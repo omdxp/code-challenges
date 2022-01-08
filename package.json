@@ -1,0 +1,24 @@
+{
+  "name": "code-challenges",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/app.js",
+  "scripts": {
+    "dev": "tsc -w",
+    "dev:run": "node ."
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Omar-Belghaouti/code-challenges.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Omar-Belghaouti/code-challenges/issues"
+  },
+  "homepage": "https://github.com/Omar-Belghaouti/code-challenges#readme",
+  "devDependencies": {
+    "typescript": "^4.5.4"
+  }
+}
