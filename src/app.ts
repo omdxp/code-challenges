@@ -1,8 +1,12 @@
-function longestWord(str: string): string {
-  const words = str.split(" ").sort((a, b) => b.length - a.length);
-  return words[0];
+function titleCase(str: string) {
+  const words = str.split(" ");
+  let titleCaseWords: string[] = [];
+  for (const word of words) {
+    titleCaseWords.push(word[0].toUpperCase() + word.toLowerCase().slice(1));
+  }
+  return titleCaseWords.join(" ");
 }
 
-const str: string = "Hello my guys how    are you doing ?";
-const res = longestWord(str);
+const str: string = "hello my guys how are YOu ?";
+const res = titleCase(str);
 console.log(res);
