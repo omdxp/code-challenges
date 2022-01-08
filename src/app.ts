@@ -1,12 +1,6 @@
 function longestWord(str: string): string {
-  const words = str.split(" ");
-  let longestWord: string = "";
-  for (const word of words) {
-    if (word.length > longestWord.length) {
-      longestWord = word;
-    }
-  }
-  return longestWord;
+  const words = str.split(" ").sort((a, b) => b.length - a.length);
+  return words[0];
 }
 
 const str: string = "Hello my guys how    are you doing ?";
