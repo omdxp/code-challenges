@@ -1,17 +1,9 @@
-function factoriolize(num: number): number {
-  let res: number = 1;
-  for (let i = 1; i <= num; i++) {
-    res *= i;
-  }
-  return res;
+function palindrome(str: string): boolean {
+  const reg = /[\W_]/g;
+  const s: string = str.toLowerCase().replace(reg, "");
+  return s === s.split("").reverse().join("");
 }
 
-function factoriolizeRec(num: number): number {
-  if (num === 1) {
-    return num;
-  }
-  return num * factoriolize(num - 1);
-}
-
-const res = factoriolizeRec(5);
+const str: string = "racecar";
+const res = palindrome(str);
 console.log(res);
