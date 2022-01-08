@@ -1,9 +1,14 @@
-function palindrome(str: string): boolean {
-  const reg = /[\W_]/g;
-  const s: string = str.toLowerCase().replace(reg, "");
-  return s === s.split("").reverse().join("");
+function longestWord(str: string): string {
+  const words = str.split(" ");
+  let longestWord: string = "";
+  for (const word of words) {
+    if (word.length > longestWord.length) {
+      longestWord = word;
+    }
+  }
+  return longestWord;
 }
 
-const str: string = "racecar";
-const res = palindrome(str);
+const str: string = "Hello my guys how    are you doing ?";
+const res = longestWord(str);
 console.log(res);
