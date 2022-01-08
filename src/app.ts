@@ -1,10 +1,9 @@
-function titleCase(str: string) {
-  const words = str.split(" ");
-  let titleCaseWords: string[] = [];
-  for (const word of words) {
-    titleCaseWords.push(word[0].toUpperCase() + word.toLowerCase().slice(1));
-  }
-  return titleCaseWords.join(" ");
+function titleCase(str: string): string {
+  return str
+    .toLowerCase()
+    .split(" ")
+    .map((e) => e[0].toUpperCase() + e.slice(1))
+    .join(" ");
 }
 
 const str: string = "hello my guys how are YOu ?";
