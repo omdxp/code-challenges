@@ -1,12 +1,8 @@
-function chunkArrayInGroups(arr: (string | number)[], size: number) {
-  if (size <= 0) return;
-  var result = [];
-  for (var i = 0; i < arr.length; i += size) {
-    result.push(arr.slice(i, i + size));
-  }
-  return result;
+function slasher(arr: string[], howMany: number): string[] {
+  return arr.slice(howMany);
 }
 
-const arr: (string | number)[] = ["a", "b", "c", "d", "e", "f"];
-const result = chunkArrayInGroups(arr, 2);
-console.log(result);
+const arr = ["a", "b", "c", "d"];
+const howMany = 2;
+const res = slasher(arr, howMany);
+console.log(res);
