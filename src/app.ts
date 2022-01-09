@@ -1,18 +1,12 @@
-function repeatString(str: string, num: number): Array<string> | string {
-  if (num <= 0) {
-    return "";
+function truncateString(str: string, num: number): string | void {
+  if (num <= 3) return;
+  if (str.length > num) {
+    return str.slice(0, num) + "...";
   }
-  return Array(num).fill(str).join("");
+  return str;
 }
 
-function repeatString2(str: string, num: number): Array<string> | string {
-  if (num <= 0) {
-    return "";
-  }
-  return str.repeat(num);
-}
-
-const str: string = "Hello";
-const num: number = 3;
-const res = repeatString(str, num);
+const str: string = "Hello my guys how are you doing?";
+const num: number = 5;
+const res = truncateString(str, num);
 console.log(res);
