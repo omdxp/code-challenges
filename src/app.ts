@@ -1,12 +1,12 @@
-function truncateString(str: string, num: number): string | void {
-  if (num <= 3) return;
-  if (str.length > num) {
-    return str.slice(0, num) + "...";
+function chunkArrayInGroups(arr: (string | number)[], size: number) {
+  if (size <= 0) return;
+  var result = [];
+  for (var i = 0; i < arr.length; i += size) {
+    result.push(arr.slice(i, i + size));
   }
-  return str;
+  return result;
 }
 
-const str: string = "Hello my guys how are you doing?";
-const num: number = 5;
-const res = truncateString(str, num);
-console.log(res);
+const arr: (string | number)[] = ["a", "b", "c", "d", "e", "f"];
+const result = chunkArrayInGroups(arr, 2);
+console.log(result);
