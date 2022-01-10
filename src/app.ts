@@ -1,31 +1,15 @@
-function convertToRoman(num: number) {
-  const roman: Record<string, number> = {
-    M: 1000,
-    CM: 900,
-    D: 500,
-    CD: 400,
-    C: 100,
-    XC: 90,
-    L: 50,
-    XL: 40,
-    X: 10,
-    IX: 9,
-    V: 5,
-    IV: 4,
-    I: 1,
-  };
-
-  let result = "";
-
-  for (const key in roman) {
-    while (num >= roman[key]) {
-      result += key;
-      num -= roman[key];
+function twoSums(nums: number[], target: number): number[] {
+  for (let i = 0; i < nums.length; i++) {
+    for (let j = i + 1; j < nums.length; j++) {
+      if (i !== j && nums[i] + nums[j] === target) {
+        return [i, j];
+      }
     }
   }
-
-  return result;
+  return [];
 }
 
-const result = convertToRoman(42);
+let nums = [2, 7, 11, 15];
+let target = 9;
+let result = twoSums(nums, target);
 console.log(result);
