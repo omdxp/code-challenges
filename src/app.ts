@@ -1,8 +1,19 @@
-function sumInRange(arr: number[], start: number, end: number): number {
-  if (start > end) {
-    return 0;
+function diffArray(arr1: number[], arr2: number[]): number[] {
+  let uniques: number[] = [];
+  for (let i = 0; i < arr1.length; i++) {
+    if (!arr2.includes(arr1[i])) {
+      uniques.push(arr1[i]);
+    }
   }
-  return arr[start] + sumInRange(arr, start + 1, end);
+  for (let i = 0; i < arr2.length; i++) {
+    if (!arr1.includes(arr2[i])) {
+      uniques.push(arr2[i]);
+    }
+  }
+  return uniques;
 }
 
-console.log(sumInRange([1, 2, 3, 4, 5], 0, 2));
+const arr1 = [1, 2, 3, 5];
+const arr2 = [1, 2, 3, 4, 5];
+const res = diffArray(arr1, arr2);
+console.log(res);
