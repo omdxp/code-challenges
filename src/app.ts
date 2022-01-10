@@ -1,13 +1,7 @@
-function mutation(arr: [string, string]) {
-  const first = arr[0].toLowerCase();
-  const second = arr[1].toLowerCase();
-
-  for (const letter of second) {
-    if (first.indexOf(letter) === -1) return false;
-  }
-  return true;
+function falsyBouncer(arr: any[]) {
+  return arr.filter(Boolean);
 }
 
-const arr: [string, string] = ["hello", "hel"];
-const res = mutation(arr);
+const arr = [1, null, NaN, 0, undefined, false, ""];
+const res = falsyBouncer(arr);
 console.log(res);
