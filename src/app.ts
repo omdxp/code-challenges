@@ -1,8 +1,18 @@
-function addToSortedArray(arr: number[], num: number) {
-  arr.push(num);
-  return arr.sort((a, b) => a - b);
+function rot13(str: string) {
+  let solved = "";
+  for (let i = 0; i < str.length; i++) {
+    let code = str.charCodeAt(i);
+    if (code >= 65 && code <= 77) {
+      solved += String.fromCharCode(code + 13);
+    } else if (code >= 78 && code <= 90) {
+      solved += String.fromCharCode(code - 13);
+    } else {
+      solved += String.fromCharCode(code);
+    }
+  }
+  return solved;
 }
 
-const arr = [1, 2, 3, 4, 5];
-const res = addToSortedArray(arr, 2.5);
+const str = "SERR PBQR PNZC";
+const res = rot13(str);
 console.log(res);
