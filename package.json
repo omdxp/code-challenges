@@ -5,7 +5,7 @@
   "main": "dist/app.js",
   "scripts": {
     "dev": "tsc -w",
-    "dev:run": "node ."
+    "start": "node ."
   },
   "repository": {
     "type": "git",
