@@ -1,22 +1,24 @@
 /**
- * @description this function return the number of balanced parentheses
- * @param s
+ * @description this function sort an array with meandering algorithm
+ * @param unsorted
+ * @returns
  */
-function getMin(s: string): number {
-  let stack = [];
-  let min = 0;
-  for (let i = 0; i < s.length; i++) {
-    if (s[i] === "(") {
-      stack.push(s[i]);
+function meanderingArray(unsorted: number[]): number[] {
+  let sorted: number[] = [];
+  let startIndex: number = 0;
+  let endIndex: number = unsorted.length - 1;
+  let flag: boolean = true;
+  unsorted.sort((a, b) => a - b);
+  for (let i = 0; i < unsorted.length; i++) {
+    if (flag) {
+      sorted[i] = unsorted[endIndex--];
     } else {
-      if (stack.length === 0) {
-        min++;
-      } else {
-        stack.pop();
-      }
+      sorted[i] = unsorted[startIndex++];
     }
+
+    flag = !flag;
   }
-  return min + stack.length;
+  return sorted;
 }
 
-console.log(getMin("()))"));
+console.log(meanderingArray([7, 5, 2, 7, 8, -2, 25, 25]));
