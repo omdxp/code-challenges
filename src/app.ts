@@ -1,6 +1,22 @@
-let arr = [1, 2, 4, 4];
+/**
+ * @description this function return the number of balanced parentheses
+ * @param s
+ */
+function getMin(s: string): number {
+  let stack = [];
+  let min = 0;
+  for (let i = 0; i < s.length; i++) {
+    if (s[i] === "(") {
+      stack.push(s[i]);
+    } else {
+      if (stack.length === 0) {
+        min++;
+      } else {
+        stack.pop();
+      }
+    }
+  }
+  return min + stack.length;
+}
 
-// search for 2 elements that sums to 8
-let result = arr.filter((x) => arr.includes(8 - x));
-
-console.log(result);
+console.log(getMin("()))"));
