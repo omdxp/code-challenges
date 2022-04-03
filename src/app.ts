@@ -1,24 +1,13 @@
-/**
- * @description this function sort an array with meandering algorithm
- * @param unsorted
- * @returns
- */
-function meanderingArray(unsorted: number[]): number[] {
-  let sorted: number[] = [];
-  let startIndex: number = 0;
-  let endIndex: number = unsorted.length - 1;
-  let flag: boolean = true;
-  unsorted.sort((a, b) => a - b);
-  for (let i = 0; i < unsorted.length; i++) {
-    if (flag) {
-      sorted[i] = unsorted[endIndex--];
-    } else {
-      sorted[i] = unsorted[startIndex++];
-    }
-
-    flag = !flag;
+function secondLargest(array: number[]) {
+  if (array.length < 2) return null;
+  const set = new Set(array);
+  let b: number[] = [];
+  for (const iterator of set.values()) {
+    b.push(iterator);
   }
-  return sorted;
+  b.sort((a, b) => a - b);
+  return b[b.length - 2];
 }
 
-console.log(meanderingArray([7, 5, 2, 7, 8, -2, 25, 25]));
+const arr = [9, 42, 53, 2, 6, 9];
+console.log(secondLargest(arr));
