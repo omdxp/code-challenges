@@ -1,31 +1,46 @@
-function longestPalindromSubstring(str: string) {
-  let res = "";
-  let resLen = 0;
+let pos = 2;
+let len = 10;
 
-  for (let i = 0; i < str.length; i++) {
-    // odd length
-    let l = i,
-      r = i;
-    while (l >= 0 && r < str.length && str[l] === str[r]) {
-      if (r - l + 1 > resLen) {
-        res = str.slice(l, r + 1);
-        resLen = r - l + 1;
-      }
-      l--;
-      r++;
-    }
-    // even length
-    (l = i), (r = i + 1);
-    while (l >= 0 && r < str.length && str[l] === str[r]) {
-      if (r - l + 1 > resLen) {
-        res = str.slice(l, r + 1);
-        resLen = r - l + 1;
-      }
-      l--;
-      r++;
+function step() {
+  if (pos === 0) {
+    pos++;
+  } else if (pos === len) {
+    pos--;
+  } else {
+    if (Math.random() > 0.5) {
+      pos++;
+    } else {
+      pos--;
     }
   }
-  return res;
 }
 
-console.log(longestPalindromSubstring("abbd"));
+let found = false;
+
+for (let i = 0; i < len; i++) {
+  let attempt = i;
+  console.log("Gonna check", attempt);
+  if (attempt === pos) {
+    found = true;
+    console.log("Found the rabbit at", pos);
+    break;
+  }
+  step();
+}
+
+if (!found) {
+  for (let i = 1; i < len; i++) {
+    let attempt = i;
+    console.log("Gonna check", attempt);
+    if (attempt === pos) {
+      found = true;
+      console.log("Found the rabbit at", pos);
+      break;
+    }
+    step();
+  }
+}
+
+if (!found) {
+  console.log("Tough luck :-(");
+}
