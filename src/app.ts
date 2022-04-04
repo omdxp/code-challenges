@@ -1,15 +1,12 @@
-// T(n) = O(n)
-// S(n) = O(n)
-function firstNonRecChar(str: string) {
-  let freq: Record<string, number> = {};
-  for (let i = 0; i < str.length; i++) {
-    if (freq.hasOwnProperty(str[i])) freq[str[i]]++;
-    else freq[str[i]] = 1;
+function numWays(n: number): number {
+  if (n === 0 || n === 1) return 1;
+  let nums: number[] = Array.from({ length: n + 1 });
+  nums[0] = 1;
+  nums[1] = 1;
+  for (let i = 2; i <= n; i++) {
+    nums[i] = nums[i - 2] + nums[i - 1];
   }
-  for (const key in freq) {
-    if (freq[key] === 1) return key;
-  }
-  return null;
+  return nums[n];
 }
 
-console.log(firstNonRecChar("AABCBD"));
+console.log(numWays(4));
