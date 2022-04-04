@@ -1,16 +1,38 @@
-function numWaysX(n: number, x: number[]): number {
-  if (n === 0) return 1;
-  let nums: number[] = Array.from({ length: n + 1 }, () => 0);
-  nums[0] = 1;
-  let total: number;
-  for (let i = 1; i <= n; i++) {
-    total = 0;
-    for (let j = 0; j < x.length; j++) {
-      if (i - j >= 0) total += nums[i - j];
-    }
-    nums[i] = total;
+// T(n) = O(logn)
+function binarySearch(arr: boolean[]) {
+  let lower = 0;
+  let upper = arr.length - 1;
+
+  while (lower <= upper) {
+    const mid = lower + Math.floor((upper - lower) / 2);
+
+    if (arr[mid - 1] === true && arr[mid] === false) return mid;
+
+    if (arr[mid - 1] === false && arr[mid] === false) upper = mid - 1;
+    else lower = mid + 1;
   }
-  return nums[n];
+
+  return -1;
 }
 
-console.log(numWaysX(4, [1, 3, 5]));
+function percentage(arr: boolean[], index: number) {
+  return (index / arr.length) * 100;
+}
+
+function longestBuildRun(buildRuns: boolean[][]) {
+  let stack = [];
+  for (let i = 0; i < buildRuns.length; i++) {
+    stack.push(percentage(buildRuns[i], binarySearch(buildRuns[i])));
+  }
+  return stack.indexOf(Math.max(...stack));
+}
+
+const buildRuns = [
+  [true, true, true, true, false, false, false],
+  [true, true, false, false],
+  [true, true, true, false],
+  [true, true, true, true, false],
+  [true, true, true, false],
+];
+
+console.log(longestBuildRun(buildRuns));
