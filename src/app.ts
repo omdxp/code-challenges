@@ -1,99 +1,31 @@
-class SinglyNode {
-  private _next: SinglyNode | undefined;
-  public get next(): SinglyNode | undefined {
-    return this._next;
-  }
-  public set next(v: SinglyNode | undefined) {
-    this._next = v;
-  }
+function longestPalindromSubstring(str: string) {
+  let res = "";
+  let resLen = 0;
 
-  constructor(public value: number) {
-    this.value = value;
-    this.next = undefined;
-  }
-}
-
-class SinglyLinkedList {
-  private _head: SinglyNode | undefined;
-  public get head(): SinglyNode | undefined {
-    return this._head;
-  }
-  public set head(v: SinglyNode | undefined) {
-    this._head = v;
-  }
-
-  private _tail: SinglyNode | undefined;
-  public get tail(): SinglyNode | undefined {
-    return this._tail;
-  }
-  public set tail(v: SinglyNode | undefined) {
-    this._tail = v;
-  }
-
-  private _size: number;
-  public get size(): number {
-    return this._size;
-  }
-
-  constructor() {
-    this.head = undefined;
-    this.tail = undefined;
-    this._size = 0;
-  }
-
-  push(value: number) {
-    const newNode = new SinglyNode(value);
-    if (this.size === 0) {
-      this.head = newNode;
-      this.tail = newNode;
-    } else {
-      this.tail!.next = newNode;
-      this.tail = newNode;
+  for (let i = 0; i < str.length; i++) {
+    // odd length
+    let l = i,
+      r = i;
+    while (l >= 0 && r < str.length && str[l] === str[r]) {
+      if (r - l + 1 > resLen) {
+        res = str.slice(l, r + 1);
+        resLen = r - l + 1;
+      }
+      l--;
+      r++;
     }
-    this._size++;
-    return this;
-  }
-
-  print() {
-    let str = "";
-    let curr = this.head;
-    while (curr) {
-      str += curr.value + " -> ";
-      curr = curr.next;
+    // even length
+    (l = i), (r = i + 1);
+    while (l >= 0 && r < str.length && str[l] === str[r]) {
+      if (r - l + 1 > resLen) {
+        res = str.slice(l, r + 1);
+        resLen = r - l + 1;
+      }
+      l--;
+      r++;
     }
-    str += "null";
-    console.log(str);
   }
+  return res;
 }
 
-function reverseLinkedList(head: SinglyNode | undefined) {
-  let prev: SinglyNode | undefined;
-  let curr = head;
-  let next: SinglyNode | undefined;
-  while (curr) {
-    next = curr.next;
-    curr.next = prev;
-    prev = curr;
-    curr = next;
-  }
-  return prev;
-}
-
-function print(head: SinglyNode | undefined) {
-  let str = "";
-  let curr = head;
-  while (curr) {
-    str += curr.value + " -> ";
-    curr = curr.next;
-  }
-  str += "null";
-  console.log(str);
-}
-
-const l = new SinglyLinkedList();
-
-l.push(1).push(2).push(3).push(4);
-
-l.print();
-
-print(reverseLinkedList(l.head));
+console.log(longestPalindromSubstring("abbd"));
