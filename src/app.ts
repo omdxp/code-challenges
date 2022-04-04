@@ -1,12 +1,16 @@
-function numWays(n: number): number {
-  if (n === 0 || n === 1) return 1;
-  let nums: number[] = Array.from({ length: n + 1 });
+function numWaysX(n: number, x: number[]): number {
+  if (n === 0) return 1;
+  let nums: number[] = Array.from({ length: n + 1 }, () => 0);
   nums[0] = 1;
-  nums[1] = 1;
-  for (let i = 2; i <= n; i++) {
-    nums[i] = nums[i - 2] + nums[i - 1];
+  let total: number;
+  for (let i = 1; i <= n; i++) {
+    total = 0;
+    for (let j = 0; j < x.length; j++) {
+      if (i - j >= 0) total += nums[i - j];
+    }
+    nums[i] = total;
   }
   return nums[n];
 }
 
-console.log(numWays(4));
+console.log(numWaysX(4, [1, 3, 5]));
